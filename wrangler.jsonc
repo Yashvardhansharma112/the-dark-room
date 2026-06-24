@@ -1,0 +1,13 @@
+{
+	"name": "the-dark-room",
+	"compatibility_date": "2026-06-24",
+	"assets": {
+		"directory": "./"
+	},
+	"routes": [
+		{
+			"pattern": "the-dark-room.studio/*",
+			"custom_domain": true
+		}
+	]
+}
