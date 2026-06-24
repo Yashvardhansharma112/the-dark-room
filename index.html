@@ -1,9 +1,998 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en-GB">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="refresh" content="0;url=/lumiere-studio-3d.html">
-<title>The Dark Room</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Dark Room â€” Photography Agency UK | Founded by Muskan</title>
+<meta name="description" content="The Dark Room is a UK photography agency founded by Muskan. Specialising in B&amp;W street, conceptual, aerial drone, and product photography. Based in the UK.">
+<meta name="author" content="Muskan â€” The Dark Room">
+<meta name="theme-color" content="#030208">
+<!-- ENHANCED V2 -->
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Dark Room â€” Photography Agency UK">
+<meta property="og:description" content="Visual stories by Muskan. B&W street Â· Conceptual Â· Aerial & Drone Â· Product photography.">
+<meta property="og:image" content="images/bw/webp/IMG_2519.webp">
+<meta property="og:locale" content="en_GB">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Dark Room â€” Photography Agency UK">
+<meta name="twitter:description" content="Visual stories by Muskan. B&W street Â· Conceptual Â· Aerial & Drone Â· Product.">
+<meta name="twitter:image" content="images/bw/webp/IMG_2519.webp">
+
+<!-- Favicon â€” aperture SVG inline -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23030208' stroke='%23c9a96e' stroke-width='1.5'/%3E%3Ccircle cx='16' cy='16' r='5' fill='none' stroke='%23c9a96e' stroke-width='1.2'/%3E%3Cline x1='16' y1='1' x2='16' y2='8' stroke='%23c9a96e' stroke-width='1'/%3E%3Cline x1='16' y1='24' x2='16' y2='31' stroke='%23c9a96e' stroke-width='1'/%3E%3Cline x1='1' y1='16' x2='8' y2='16' stroke='%23c9a96e' stroke-width='1'/%3E%3Cline x1='24' y1='16' x2='31' y2='16' stroke='%23c9a96e' stroke-width='1'/%3E%3C/svg%3E">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono&family=Bebas+Neue&display=swap" rel="stylesheet">
+
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;overflow-x:hidden}
+body{background:#030208;color:#f0ede6;font-family:'Space Grotesk',sans-serif;cursor:none}
+#c{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;display:block}
+#sr{height:900vh;position:relative;z-index:1;pointer-events:none}
+
+/* â”€â”€ FOCUS STYLES (keyboard nav) â”€â”€ */
+:focus-visible{outline:2px solid #c9a96e;outline-offset:3px;border-radius:2px}
+
+/* â”€â”€ REDUCED MOTION â”€â”€ */
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms !important;transition-duration:.01ms !important}
+  #c{display:none}
+  body{background:#030208}
+  #sr{height:100vh}
+  #oh{position:relative;opacity:1 !important;display:flex}
+  #oh .h-eye,#oh .h-ttl,#oh .h-sub{opacity:1 !important;transform:none !important}
+  #loader{display:none !important}
+}
+
+/* â”€â”€ LOADER â”€â”€ */
+#loader{position:fixed;inset:0;z-index:99000;background:#030208;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .7s}
+#loader.hide{opacity:0;pointer-events:none}
+.ld-logo{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,6vw,5rem);letter-spacing:.12em;color:#f0ede6}
+.ld-logo span{color:#c9a96e}
+.ld-bar{width:120px;height:1px;background:rgba(240,237,230,.08);position:relative;overflow:hidden}
+.ld-bar::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:#c9a96e;animation:ldbar 1.4s ease forwards}
+@keyframes ldbar{to{left:0}}
+.ld-txt{font-family:'Space Mono',monospace;font-size:.44rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(240,237,230,.28)}
+
+/* â”€â”€ PROGRESS BAR â”€â”€ */
+#progress-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,#c9a96e 0%,#e8c67a 50%,#c9a96e 100%);z-index:3000;width:0%;pointer-events:none}
+
+/* â”€â”€ CURSOR â”€â”€ */
+#cd{position:fixed;width:5px;height:5px;background:#c9a96e;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+#cr{position:fixed;width:28px;height:28px;border:1px solid rgba(201,169,110,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .22s,height .22s,border-color .22s}
+
+/* â”€â”€ GRAIN â”€â”€ */
+#grain{position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:.028;
+background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* â”€â”€ NAV â”€â”€ */
+#nav{position:fixed;top:0;left:0;right:0;z-index:2000;display:flex;align-items:center;justify-content:space-between;padding:22px 44px;transition:padding .4s,background .4s}
+#nav.scrolled{padding:14px 44px;background:rgba(3,2,8,.75);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(240,237,230,.05)}
+.n-logo::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:#c9a96e;margin-right:8px;box-shadow:0 0 8px rgba(201,169,110,.7)}
+.n-logo{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(240,237,230,.9);text-decoration:none}
+.n-pill{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.04);border:1px solid rgba(240,237,230,.08);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:100px;padding:10px 22px}
+.n-pill a{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,237,230,.65);text-decoration:none;transition:color .2s;cursor:none}
+.n-pill a:hover{color:#c9a96e}
+.n-sep{width:20px;height:1px;background:rgba(240,237,230,.12)}
+
+/* â”€â”€ SIDEBAR â”€â”€ */
+#sb{position:fixed;left:36px;top:50%;transform:translateY(-50%);z-index:2000;opacity:0;transition:opacity .7s;pointer-events:none}
+#sb.on{opacity:1;pointer-events:auto}
+.sb-q{font-family:'Space Mono',monospace;font-size:.46rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(240,237,230,.3);margin-bottom:14px}
+.sb-a{display:flex;align-items:center;gap:5px;font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,237,230,.38);text-decoration:none;margin-bottom:9px;transition:color .2s;cursor:none}
+.sb-ar{opacity:0;transform:translateX(-5px);transition:all .18s;font-size:.6rem}
+.sb-a:hover{color:#c9a96e}.sb-a:hover .sb-ar{opacity:1;transform:translateX(0)}
+.sb-btn{display:inline-block;margin-top:14px;border:1px solid rgba(240,237,230,.14);padding:7px 14px;font-family:'Space Mono',monospace;font-size:.46rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,237,230,.38);text-decoration:none;transition:all .2s;cursor:none}
+.sb-btn:hover{border-color:#c9a96e;color:#c9a96e}
+
+/* â”€â”€ RIGHT INDICATOR â”€â”€ */
+#ri{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:2000;display:flex;flex-direction:column;gap:7px}
+.ri-d{width:3px;height:3px;border-radius:50%;background:rgba(240,237,230,.18);transition:all .4s;cursor:none}
+.ri-d.on{background:#c9a96e;height:16px;border-radius:2px}
+
+/* â”€â”€ ALL OVERLAYS â”€â”€ */
+.ov{position:fixed;top:0;left:0;width:100%;height:100%;z-index:500;pointer-events:none;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .9s}
+
+/* â”€â”€ HERO â”€â”€ */
+#oh{flex-direction:column;align-items:center;text-align:center;gap:12px}
+.h-eye{font-family:'Space Mono',monospace;font-size:.54rem;letter-spacing:.42em;text-transform:uppercase;color:#c9a96e;transform:translateY(16px);transition:transform 1s .1s,opacity 1s .1s;opacity:0}
+.h-ttl{font-family:'Bebas Neue',sans-serif;font-size:clamp(4.5rem,12vw,12rem);line-height:.88;letter-spacing:.05em;color:#f0ede6;transform:translateY(24px);transition:transform 1.1s .3s,opacity 1.1s .3s;opacity:0}
+.h-sub{font-family:'Space Grotesk',sans-serif;font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(240,237,230,.38);font-style:italic;transform:translateY(12px);transition:transform .9s .7s,opacity .9s .7s;opacity:0}
+.h-gold{color:#c9a96e}
+#oh.on .h-eye,#oh.on .h-ttl,#oh.on .h-sub{transform:translateY(0);opacity:1}
+
+/* â”€â”€ SCROLL HINT â”€â”€ */
+#sh{position:fixed;bottom:34px;left:50%;transform:translateX(-50%);z-index:600;display:flex;flex-direction:column;align-items:center;gap:7px;opacity:0;transition:opacity .6s;pointer-events:none}
+#sh.on{opacity:1}
+#sh span{font-family:'Space Mono',monospace;font-size:.46rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(240,237,230,.3)}
+.sh-ln{width:1px;height:38px;background:linear-gradient(to bottom,#c9a96e,transparent);animation:ln 2s ease-in-out infinite}
+@keyframes ln{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:1;transform:scaleY(.7)}}
+
+/* â”€â”€ STATS STRIP â”€â”€ */
+#st-stats{position:fixed;top:50%;left:0;transform:translateY(-50%);z-index:500;width:100%;pointer-events:none;opacity:0;transition:opacity .8s}
+.stats-inner{display:flex;justify-content:center;align-items:center;gap:72px;padding:0 60px}
+.stat-item{text-align:center}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,6vw,6rem);line-height:1;color:#f0ede6;letter-spacing:.04em}
+.stat-num .n{color:#c9a96e}
+.stat-lbl{font-family:'Space Mono',monospace;font-size:.44rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(240,237,230,.3);margin-top:8px}
+.stat-sep{width:1px;height:60px;background:rgba(240,237,230,.08)}
+
+/* â”€â”€ PROCESS SECTION â”€â”€ */
+#st-process{position:fixed;top:50%;left:0;transform:translateY(-50%);z-index:500;pointer-events:none;opacity:0;transition:opacity .8s;width:100%;padding:0 150px}
+.process-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;max-width:1000px;margin:0 auto}
+.proc-item{display:flex;gap:22px;align-items:flex-start}
+.proc-num{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:#c9a96e;opacity:.22;line-height:1;flex-shrink:0;width:60px}
+.proc-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.06em;color:#f0ede6;margin-bottom:8px}
+.proc-desc{font-family:'Space Grotesk',sans-serif;font-size:.76rem;line-height:1.8;color:rgba(240,237,230,.38);font-weight:300}
+
+/* â”€â”€ SECTION TITLES â”€â”€ */
+.stitle{position:fixed;top:50%;left:0;transform:translateY(-50%);z-index:500;padding:0 60px 0 150px;pointer-events:none;opacity:0;transition:opacity .8s;width:52%}
+.st-lbl{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.35em;text-transform:uppercase;color:#c9a96e;margin-bottom:14px;display:flex;align-items:center;gap:12px}
+.st-lbl::after{content:'';width:36px;height:1px;background:#c9a96e;opacity:.4}
+.st-h{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,8vw,8rem);line-height:.9;color:#f0ede6;letter-spacing:.04em}
+.st-p{font-size:.78rem;line-height:1.85;color:rgba(240,237,230,.4);margin-top:18px;font-weight:300;max-width:340px}
+
+/* â”€â”€ CARD INFO â”€â”€ */
+#ci{position:fixed;bottom:0;left:0;right:0;z-index:500;padding:32px 150px;pointer-events:none;opacity:0;transition:opacity .6s;background:linear-gradient(to top,rgba(3,2,8,.95) 0%,transparent 100%);height:240px;display:flex;align-items:flex-end}
+#ci .ci-inner{display:flex;align-items:flex-end;gap:60px}
+.ci-cat{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.32em;text-transform:uppercase;color:#c9a96e}
+.ci-ttl{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,5rem);line-height:.9;color:#f0ede6;letter-spacing:.04em}
+.ci-yr{font-family:'Space Mono',monospace;font-size:.46rem;letter-spacing:.2em;color:rgba(240,237,230,.3);margin-top:4px}
+.ci-nav{display:flex;gap:16px;margin-left:auto;align-self:center}
+.ci-dot{width:6px;height:6px;border-radius:50%;background:rgba(240,237,230,.2);transition:all .3s;cursor:pointer;pointer-events:auto}
+.ci-dot.on{background:#c9a96e;width:24px;border-radius:3px}
+
+/* â”€â”€ VIEW ALBUM BUTTON â”€â”€ */
+#view-btn{position:fixed;bottom:240px;right:150px;z-index:600;opacity:0;transition:opacity .4s,transform .4s;transform:translateY(8px);pointer-events:none;background:transparent;border:1px solid #c9a96e;color:#c9a96e;padding:11px 22px;font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;cursor:none}
+#view-btn.on{opacity:1;transform:translateY(0);pointer-events:auto}
+#view-btn:hover{background:#c9a96e;color:#030208}
+
+/* â”€â”€ CONTACT â”€â”€ */
+#oc{position:fixed;top:0;left:0;width:100%;height:100%;z-index:700;display:flex;align-items:center;background:linear-gradient(105deg,rgba(3,2,8,.98) 52%,rgba(3,2,8,.3));padding:0 60px 0 150px;opacity:0;transition:opacity .9s;pointer-events:none}
+#oc.on{opacity:1;pointer-events:auto}
+.ct-w{max-width:480px}
+.ct-h{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,5.5vw,5.5rem);line-height:.9;color:#f0ede6;margin-bottom:32px;letter-spacing:.04em}
+.ct-h em{color:#c9a96e;font-style:normal}
+.cf{display:flex;flex-direction:column;gap:16px}
+.ff{display:flex;flex-direction:column;gap:5px}
+.ff label{font-family:'Space Mono',monospace;font-size:.46rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(240,237,230,.32)}
+.ff input,.ff select,.ff textarea{background:transparent;border:none;border-bottom:1px solid rgba(240,237,230,.09);padding:9px 0;color:#f0ede6;font-family:'Space Grotesk',sans-serif;font-size:.84rem;outline:none;transition:border-color .3s;cursor:none;width:100%}
+.ff input:focus,.ff select:focus,.ff textarea:focus{border-bottom-color:#c9a96e}
+.ff input::placeholder,.ff textarea::placeholder{color:rgba(240,237,230,.15)}
+.ff textarea{resize:none;height:56px}
+.ff select option{background:#030208}
+.ff input.err,.ff select.err,.ff textarea.err{border-bottom-color:#ff5555}
+.cbtn{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid #c9a96e;color:#c9a96e;padding:11px 22px;font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;cursor:none;transition:all .3s;margin-top:6px}
+.cbtn:hover{background:#c9a96e;color:#030208}
+.cbtn:disabled{opacity:.4;cursor:not-allowed}
+.ct-info{font-family:'Space Mono',monospace;font-size:.46rem;letter-spacing:.12em;color:rgba(240,237,230,.28);margin-top:8px}
+/* Form success state */
+#form-success{display:none;font-family:'Bebas Neue',sans-serif;font-size:clamp(1.4rem,3vw,2.8rem);line-height:1.1;color:#c9a96e;letter-spacing:.06em;padding-top:8px}
+
+/* â”€â”€ FOOTER â”€â”€ */
+#ft{position:fixed;bottom:0;left:0;right:0;z-index:800;padding:18px 44px;border-top:1px solid rgba(240,237,230,.05);display:flex;align-items:center;justify-content:space-between;opacity:0;transition:opacity .6s;pointer-events:none}
+#ft.on{opacity:1}
+.ft-t{font-family:'Space Mono',monospace;font-size:.46rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,237,230,.26)}
+.ft-l{display:flex;gap:20px}
+.ft-l a{font-family:'Space Mono',monospace;font-size:.44rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(240,237,230,.26);text-decoration:none;transition:color .2s;pointer-events:auto;cursor:none}
+.ft-l a:hover{color:#c9a96e}
+
+/* â”€â”€ LIGHTBOX â”€â”€ */
+#lb{position:fixed;inset:0;z-index:9500;background:rgba(3,2,8,.97);display:none;overflow-y:auto;padding:80px 60px 60px}
+#lb.open{display:block}
+#lb-close{position:fixed;top:24px;right:36px;background:transparent;border:1px solid rgba(240,237,230,.14);color:rgba(240,237,230,.6);font-size:1.1rem;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:none;transition:all .2s;z-index:9600}
+#lb-close:hover{border-color:#c9a96e;color:#c9a96e}
+#lb-header{margin-bottom:40px}
+#lb-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,5.5rem);line-height:.9;color:#f0ede6;letter-spacing:.04em}
+#lb-cat{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.32em;text-transform:uppercase;color:#c9a96e;margin-top:8px}
+#lb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:6px}
+#lb-grid img{width:100%;aspect-ratio:3/2;object-fit:cover;cursor:none;transition:opacity .2s;display:block}
+#lb-grid img:hover{opacity:.82}
+/* Single image view */
+#lb-single{position:fixed;inset:0;z-index:9700;background:rgba(3,2,8,.98);display:flex;align-items:center;justify-content:center}
+#lb-img{max-width:92vw;max-height:88vh;object-fit:contain;display:block;user-select:none}
+#lb-prev,#lb-next{position:fixed;top:50%;transform:translateY(-50%);background:transparent;border:1px solid rgba(240,237,230,.14);color:rgba(240,237,230,.6);font-size:1.6rem;width:46px;height:64px;display:flex;align-items:center;justify-content:center;cursor:none;transition:all .2s;z-index:9800}
+#lb-prev{left:20px}#lb-next{right:20px}
+#lb-prev:hover,#lb-next:hover{border-color:#c9a96e;color:#c9a96e}
+#lb-single-close{position:fixed;top:20px;right:36px;background:transparent;border:1px solid rgba(240,237,230,.14);color:rgba(240,237,230,.6);font-size:1.1rem;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:none;transition:all .2s;z-index:9800}
+#lb-single-close:hover{border-color:#c9a96e;color:#c9a96e}
+#lb-count{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:.46rem;letter-spacing:.22em;color:rgba(240,237,230,.3);z-index:9800}
+
+/* â”€â”€ COOKIE BANNER â”€â”€ */
+#cookie{position:fixed;bottom:0;left:0;right:0;z-index:98000;background:rgba(8,6,18,.97);border-top:1px solid rgba(240,237,230,.06);padding:18px 44px;display:flex;align-items:center;justify-content:space-between;gap:24px;transform:translateY(100%);transition:transform .5s .8s}
+#cookie.show{transform:translateY(0)}
+.ck-txt{font-family:'Space Grotesk',sans-serif;font-size:.75rem;color:rgba(240,237,230,.45);line-height:1.6;max-width:600px}
+.ck-txt a{color:#c9a96e;text-decoration:none}
+.ck-btns{display:flex;gap:10px;flex-shrink:0}
+.ck-btn{font-family:'Space Mono',monospace;font-size:.46rem;letter-spacing:.18em;text-transform:uppercase;padding:8px 16px;border:1px solid rgba(240,237,230,.14);color:rgba(240,237,230,.5);background:transparent;cursor:pointer;transition:all .2s;white-space:nowrap}
+.ck-btn.accept{border-color:#c9a96e;color:#c9a96e}
+.ck-btn:hover{border-color:#c9a96e;color:#c9a96e}
+.ck-btn.accept:hover{background:#c9a96e;color:#030208}
+
+/* â”€â”€ PRIVACY MODAL â”€â”€ */
+#privacy{position:fixed;inset:0;z-index:97000;background:rgba(3,2,8,.98);display:none;overflow-y:auto;padding:80px 10vw}
+#privacy.open{display:block}
+.prv-close{position:fixed;top:24px;right:36px;background:transparent;border:1px solid rgba(240,237,230,.14);color:rgba(240,237,230,.6);font-size:1.1rem;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;z-index:97100}
+.prv-close:hover{border-color:#c9a96e;color:#c9a96e}
+.prv-h{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,4rem);color:#f0ede6;letter-spacing:.04em;margin-bottom:32px}
+.prv-h span{color:#c9a96e}
+.prv-body{font-family:'Space Grotesk',sans-serif;font-size:.84rem;line-height:1.9;color:rgba(240,237,230,.5);max-width:680px}
+.prv-body h3{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(240,237,230,.7);margin:28px 0 10px}
+.prv-body a{color:#c9a96e}
+
+@media(max-width:768px){
+  #sb{display:none}
+  #nav{padding:16px 20px}
+  #nav.scrolled{padding:10px 20px}
+  .stitle{padding:0 20px;width:90%}
+  #ci{padding:20px 20px}
+  #oc{padding:0 20px}
+  .ct-h{font-size:clamp(2rem,10vw,5rem)}
+  #view-btn{right:20px;left:auto;bottom:240px}
+  #lb{padding:60px 20px 40px}
+  #lb-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+  #cookie{flex-direction:column;align-items:flex-start;padding:18px 20px}
+  .ck-btns{width:100%}
+  #privacy{padding:60px 20px}
+  .stats-inner{flex-direction:column;gap:28px}
+  .stat-sep{width:60px;height:1px}
+  .process-grid{grid-template-columns:1fr;gap:24px}
+  #st-process{padding:0 20px}
+}
+</style>
 </head>
-<body></body>
+<body>
+
+<!-- LOADER -->
+<div id="loader" aria-live="polite" aria-label="Loading The Dark Room">
+  <div class="ld-logo">The Dark <span>Room</span></div>
+  <div class="ld-bar"></div>
+  <div class="ld-txt">Loading</div>
+  <div style="font-family:'Space Mono',monospace;font-size:.46rem;letter-spacing:.18em;color:rgba(201,169,110,.5);margin-top:4px" id="ld-pct">0%</div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div id="progress-bar"></div>
+
+<div id="grain"></div>
+<div id="cd" aria-hidden="true"></div>
+<div id="cr" aria-hidden="true"></div>
+<canvas id="c" aria-hidden="true"></canvas>
+<div id="sr" aria-hidden="true"></div>
+
+<!-- SKIP NAV (keyboard accessibility) -->
+<a href="#oc" style="position:fixed;top:-100px;left:20px;z-index:99999;background:#c9a96e;color:#030208;padding:8px 16px;font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;transition:top .2s" onfocus="this.style.top='20px'" onblur="this.style.top='-100px'">Skip to contact</a>
+
+<!-- NAV -->
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <a href="#" class="n-logo" aria-label="The Dark Room â€” home">The Dark Room</a>
+  <div class="n-pill">
+    <a href="#" id="n-work" aria-label="View our work">Work</a>
+    <div class="n-sep" aria-hidden="true"></div>
+    <a href="#" id="n-about" aria-label="About the studio">Studio</a>
+    <div class="n-sep" aria-hidden="true"></div>
+    <a href="#" id="n-contact" aria-label="Contact us">Contact</a>
+  </div>
+</nav>
+
+<!-- SIDEBAR -->
+<nav id="sb" aria-label="Browse by genre">
+  <div class="sb-q">What are you looking for?</div>
+  <a href="#" class="sb-a" data-album="0"><span class="sb-ar" aria-hidden="true">â†’</span>B&amp;W Street</a>
+  <a href="#" class="sb-a" data-album="1"><span class="sb-ar" aria-hidden="true">â†’</span>Conceptual</a>
+  <a href="#" class="sb-a" data-album="2"><span class="sb-ar" aria-hidden="true">â†’</span>Aerial &amp; Drone</a>
+  <a href="#" class="sb-a" data-album="3"><span class="sb-ar" aria-hidden="true">â†’</span>Product</a>
+  <a href="#" class="sb-btn" id="sb-all">See All Work</a>
+</nav>
+
+<!-- RIGHT INDICATOR -->
+<div id="ri" aria-hidden="true">
+  <div class="ri-d on"></div>
+  <div class="ri-d"></div>
+  <div class="ri-d"></div>
+  <div class="ri-d"></div>
+  <div class="ri-d"></div>
+  <div class="ri-d"></div>
+  <div class="ri-d"></div>
+</div>
+
+<!-- HERO OVERLAY -->
+<div class="ov" id="oh" role="banner">
+  <div class="h-eye">Photography Agency â€” United Kingdom</div>
+  <div class="h-ttl">THE DARK<br><span class="h-gold">ROOM</span></div>
+  <div class="h-sub">Founded by Muskan Â· Fujifilm X-T4 Â· UK</div>
+</div>
+
+<!-- SCROLL HINT -->
+<div id="sh" aria-hidden="true"><span>Scroll to explore</span><div class="sh-ln"></div></div>
+
+<!-- SECTION: WORK TITLE -->
+<div class="stitle" id="st-work" aria-hidden="true">
+  <div class="st-lbl">Selected Work</div>
+  <div class="st-h">VISUAL<br>STORIES</div>
+  <p class="st-p">Each frame is deliberate. From street corners to product tables â€” photography that holds its own.</p>
+</div>
+
+<!-- SECTION: STUDIO TITLE -->
+<div class="stitle" id="st-about" aria-hidden="true">
+  <div class="st-lbl">Behind the Lens</div>
+  <div class="st-h">LIGHT<br>IS MY<br>LANGUAGE</div>
+  <p class="st-p">The Dark Room is Muskan's studio â€” built on a love of quiet moments, honest textures, and frames that say more than words. Fujifilm X-T4. Based in the UK, shooting everywhere.</p>
+</div>
+
+<!-- SECTION: STATS -->
+<div id="st-stats" aria-hidden="true">
+  <div class="stats-inner">
+    <div class="stat-item"><div class="stat-num"><span class="n" id="stat-n1">0</span>+</div><div class="stat-lbl">Projects Delivered</div></div>
+    <div class="stat-sep"></div>
+    <div class="stat-item"><div class="stat-num"><span class="n" id="stat-n2">0</span>K</div><div class="stat-lbl">Frames Captured</div></div>
+    <div class="stat-sep"></div>
+    <div class="stat-item"><div class="stat-num"><span class="n" id="stat-n3">0</span></div><div class="stat-lbl">Albums Released</div></div>
+    <div class="stat-sep"></div>
+    <div class="stat-item"><div class="stat-num"><span class="n" id="stat-n4">0</span></div><div class="stat-lbl">UK Cities Shot</div></div>
+  </div>
+</div>
+
+<!-- SECTION: PROCESS -->
+<div id="st-process" aria-hidden="true">
+  <div class="process-grid">
+    <div class="proc-item"><div class="proc-num">01</div><div><div class="proc-title">Consultation</div><div class="proc-desc">We talk through your vision, brand identity, and the story you want to tell. Every shoot begins with intent.</div></div></div>
+    <div class="proc-item"><div class="proc-num">02</div><div><div class="proc-title">The Shoot</div><div class="proc-desc">On location or in studio â€” the Fujifilm X-T4 captures raw light, texture, and authentic moments.</div></div></div>
+    <div class="proc-item"><div class="proc-num">03</div><div><div class="proc-title">Darkroom Edit</div><div class="proc-desc">Every image is crafted in post â€” colour graded, toned, and refined to exact standards.</div></div></div>
+    <div class="proc-item"><div class="proc-num">04</div><div><div class="proc-title">Delivery</div><div class="proc-desc">High-resolution files delivered in your preferred format â€” print-ready, web-optimised, or both.</div></div></div>
+  </div>
+</div>
+
+<!-- CARD INFO -->
+<div id="ci" aria-live="polite">
+  <div class="ci-inner">
+    <div>
+      <div class="ci-cat" id="ci-cat">B&amp;W Street</div>
+      <div class="ci-ttl" id="ci-ttl">THE B&amp;W PAGE</div>
+      <div class="ci-yr" id="ci-yr">Travel Â· Collaboration</div>
+    </div>
+    <div class="ci-nav" id="ci-nav"></div>
+  </div>
+</div>
+
+<!-- VIEW ALBUM BUTTON -->
+<button id="view-btn" aria-label="View current album gallery">View Album â†’</button>
+
+<!-- CONTACT -->
+<section id="oc" aria-label="Contact The Dark Room">
+  <div class="ct-w">
+    <div class="ct-h">LET'S MAKE<br>SOMETHING<br><em>UNFORGETTABLE</em></div>
+    <form class="cf" id="contact-form" novalidate>
+      <div class="ff">
+        <label for="cf-name">Name</label>
+        <input type="text" id="cf-name" name="name" placeholder="Your name" autocomplete="name" required>
+      </div>
+      <div class="ff">
+        <label for="cf-email">Email</label>
+        <input type="email" id="cf-email" name="email" placeholder="your@email.com" autocomplete="email" required>
+      </div>
+      <div class="ff">
+        <label for="cf-service">Service</label>
+        <select id="cf-service" name="service" required>
+          <option value="">Select a style...</option>
+          <option>B&amp;W / Street</option>
+          <option>Conceptual</option>
+          <option>Aerial &amp; Drone</option>
+          <option>Product</option>
+        </select>
+      </div>
+      <div class="ff">
+        <label for="cf-msg">Your Vision</label>
+        <textarea id="cf-msg" name="message" placeholder="Tell me about your projectâ€¦" required></textarea>
+      </div>
+      <button type="submit" class="cbtn" id="cf-submit">Send Enquiry â†’</button>
+      <div id="form-success" role="alert">Thank you â€” I'll be in touch within 48 hours.</div>
+      <div class="ct-info">
+        <a href="mailto:Connect@thedarkroomstudios.com" style="color:inherit;text-decoration:none">Connect@thedarkroomstudios.com</a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="ft" role="contentinfo">
+  <div class="ft-t">Â© 2026 The Dark Room Â· Founded by Muskan</div>
+  <div class="ft-l">
+    <a href="#" aria-label="Instagram">Instagram</a>
+    <a href="#" aria-label="Facebook">Facebook</a>
+    <a href="#" aria-label="Twitter / X">Twitter</a>
+    <a href="#" aria-label="LinkedIn">LinkedIn</a>
+    <a href="#" id="prv-link" aria-label="Privacy Policy">Privacy</a>
+  </div>
+  <div class="ft-t">United Kingdom</div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lb" role="dialog" aria-modal="true" aria-label="Photo gallery">
+  <button id="lb-close" aria-label="Close gallery">âœ•</button>
+  <div id="lb-header">
+    <div id="lb-title"></div>
+    <div id="lb-cat"></div>
+  </div>
+  <div id="lb-grid"></div>
+</div>
+
+<!-- LIGHTBOX SINGLE VIEW -->
+<div id="lb-single" style="display:none" role="dialog" aria-modal="true" aria-label="Full size photo">
+  <button id="lb-single-close" aria-label="Back to gallery">âœ•</button>
+  <img id="lb-img" src="" alt="">
+  <button id="lb-prev" aria-label="Previous photo">&#8249;</button>
+  <button id="lb-next" aria-label="Next photo">&#8250;</button>
+  <div id="lb-count" aria-live="polite"></div>
+</div>
+
+<!-- COOKIE BANNER -->
+<div id="cookie" role="region" aria-label="Cookie notice">
+  <p class="ck-txt">
+    This site uses essential cookies only. By continuing to browse you agree to our
+    <a href="#" id="ck-prv-link">Privacy Policy</a>.
+    No tracking or analytics cookies are used.
+  </p>
+  <div class="ck-btns">
+    <button class="ck-btn" id="ck-decline">Decline</button>
+    <button class="ck-btn accept" id="ck-accept">Accept &amp; Continue</button>
+  </div>
+</div>
+
+<!-- PRIVACY MODAL -->
+<div id="privacy" role="dialog" aria-modal="true" aria-label="Privacy Policy">
+  <button class="prv-close" id="prv-close" aria-label="Close privacy policy">âœ•</button>
+  <div class="prv-h">Privacy <span>Policy</span></div>
+  <div class="prv-body">
+    <p>The Dark Room is a photography studio founded by Muskan, based in the United Kingdom. This privacy policy explains how we handle your personal data in accordance with UK GDPR and the Data Protection Act 2018.</p>
+    <h3>What data we collect</h3>
+    <p>When you complete the contact form on this website, we collect your name, email address, selected service, and the message you write. This data is used solely to respond to your enquiry.</p>
+    <h3>How we use it</h3>
+    <p>Your data is used only to reply to your contact request. We do not sell, share, or transfer your personal data to any third parties. We do not use your data for marketing without explicit consent.</p>
+    <h3>Cookies</h3>
+    <p>This site uses a single essential cookie to remember your cookie consent choice. No analytics, advertising, or tracking cookies are used.</p>
+    <h3>Your rights</h3>
+    <p>Under UK GDPR you have the right to access, correct, or delete your personal data. To exercise these rights, email us at <a href="mailto:Connect@thedarkroomstudios.com">Connect@thedarkroomstudios.com</a>.</p>
+    <h3>Retention</h3>
+    <p>Contact enquiry data is retained for up to 12 months and then securely deleted.</p>
+    <h3>Contact</h3>
+    <p>The Dark Room Â· United Kingdom Â· <a href="mailto:Connect@thedarkroomstudios.com">Connect@thedarkroomstudios.com</a></p>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+// ALBUMS â€” single source of truth
+// â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+const ALBUMS = [
+  {
+    slug: 'bw',
+    title: 'THE B&W PAGE',
+    cat: 'B&W STREET',
+    tags: ['Travel', 'Collaboration'],
+    cover: 'images/bw/webp/IMG_2519.webp',
+    photos: [
+      {t:'images/bw/thumbs/IMG_2519.webp', f:'images/bw/webp/IMG_2519.webp'},
+      {t:'images/bw/thumbs/IMG_2510.webp', f:'images/bw/webp/IMG_2510.webp'},
+      {t:'images/bw/thumbs/IMG_2516.webp', f:'images/bw/webp/IMG_2516.webp'},
+      {t:'images/bw/thumbs/IMG_2518.webp', f:'images/bw/webp/IMG_2518.webp'},
+      {t:'images/bw/thumbs/IMG_2526.webp', f:'images/bw/webp/IMG_2526.webp'},
+      {t:'images/bw/thumbs/IMG_2531.webp', f:'images/bw/webp/IMG_2531.webp'},
+      {t:'images/bw/thumbs/IMG_2533.webp', f:'images/bw/webp/IMG_2533.webp'},
+      {t:'images/bw/thumbs/IMG_2847.webp', f:'images/bw/webp/IMG_2847.webp'},
+      {t:'images/bw/thumbs/IMG_3501.webp', f:'images/bw/webp/IMG_3501.webp'},
+      {t:'images/bw/thumbs/IMG_3571.webp', f:'images/bw/webp/IMG_3571.webp'},
+    ],
+    acc: 0xffffff, c0: 0x050505,
+  },
+  {
+    slug: 'organic-silence',
+    title: 'ORGANIC SILENCE',
+    cat: 'CONCEPTUAL',
+    tags: ['Conceptual', 'Commercial'],
+    cover: 'images/organic-silence/webp/IMG_6145.webp',
+    photos: [
+      {t:'images/organic-silence/thumbs/IMG_6145.webp',        f:'images/organic-silence/webp/IMG_6145.webp'},
+      {t:'images/organic-silence/thumbs/IMG_4784.webp',        f:'images/organic-silence/webp/IMG_4784.webp'},
+      {t:'images/organic-silence/thumbs/FullSizeRender.webp',  f:'images/organic-silence/webp/FullSizeRender.webp'},
+      {t:'images/organic-silence/thumbs/FullSizeRender(1).webp',f:'images/organic-silence/webp/FullSizeRender(1).webp'},
+      {t:'images/organic-silence/thumbs/IMG_3191.webp',        f:'images/organic-silence/webp/IMG_3191.webp'},
+      {t:'images/organic-silence/thumbs/IMG_3243.webp',        f:'images/organic-silence/webp/IMG_3243.webp'},
+      {t:'images/organic-silence/thumbs/IMG_3249.webp',        f:'images/organic-silence/webp/IMG_3249.webp'},
+      {t:'images/organic-silence/thumbs/IMG_3249(1).webp',     f:'images/organic-silence/webp/IMG_3249(1).webp'},
+    ],
+    acc: 0xc9a96e, c0: 0x0a0804,
+  },
+  {
+    slug: 'tactile-concrete',
+    title: 'TACTILE CONCRETE',
+    cat: 'AERIAL & DRONE',
+    tags: ['Aerial & Drone', 'Passion Project'],
+    cover: 'images/tactile-concrete/webp/IMG_2279.webp',
+    photos: [
+      {t:'images/tactile-concrete/thumbs/IMG_2279.webp',       f:'images/tactile-concrete/webp/IMG_2279.webp'},
+      {t:'images/tactile-concrete/thumbs/IMG_1902.webp',       f:'images/tactile-concrete/webp/IMG_1902.webp'},
+      {t:'images/tactile-concrete/thumbs/IMG_1903.webp',       f:'images/tactile-concrete/webp/IMG_1903.webp'},
+      {t:'images/tactile-concrete/thumbs/FullSizeRender.webp', f:'images/tactile-concrete/webp/FullSizeRender.webp'},
+      {t:'images/tactile-concrete/thumbs/IMG_2263.webp',       f:'images/tactile-concrete/webp/IMG_2263.webp'},
+      {t:'images/tactile-concrete/thumbs/IMG_1669.webp',       f:'images/tactile-concrete/webp/IMG_1669.webp'},
+    ],
+    acc: 0x8090ff, c0: 0x02040e,
+  },
+  {
+    slug: 'crafted-perfection',
+    title: 'CRAFTED PERFECTION',
+    cat: 'PRODUCT',
+    tags: ['Product', 'Commercial'],
+    cover: 'images/crafted-perfection/webp/IMG_3349.webp',
+    photos: [
+      {t:'images/crafted-perfection/thumbs/IMG_3349.webp', f:'images/crafted-perfection/webp/IMG_3349.webp'},
+      {t:'images/crafted-perfection/thumbs/IMG_3348.webp', f:'images/crafted-perfection/webp/IMG_3348.webp'},
+      {t:'images/crafted-perfection/thumbs/IMG_3347.webp', f:'images/crafted-perfection/webp/IMG_3347.webp'},
+      {t:'images/crafted-perfection/thumbs/IMG_3350.webp', f:'images/crafted-perfection/webp/IMG_3350.webp'},
+      {t:'images/crafted-perfection/thumbs/IMG_3352.webp', f:'images/crafted-perfection/webp/IMG_3352.webp'},
+      {t:'images/crafted-perfection/thumbs/IMG_3353.webp', f:'images/crafted-perfection/webp/IMG_3353.webp'},
+      {t:'images/crafted-perfection/thumbs/IMG_3354.webp', f:'images/crafted-perfection/webp/IMG_3354.webp'},
+    ],
+    acc: 0x30cc80, c0: 0x020c06,
+  },
+];
+
+// â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+// LOADER with fake progress counter
+// â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+const $loader = document.getElementById('loader');
+const $ldPct = document.getElementById('ld-pct');
+let _pct = 0;
+const _pctTick = setInterval(() => {
+  _pct = Math.min(_pct + Math.random() * 18, 94);
+  if ($ldPct) $ldPct.textContent = Math.floor(_pct) + '%';
+}, 100);
+window.addEventListener('load', () => {
+  clearInterval(_pctTick);
+  if ($ldPct) $ldPct.textContent = '100%';
+  setTimeout(() => {
+    $loader.classList.add('hide');
+    setTimeout(() => { $loader.style.display = 'none'; }, 800);
+  }, 600);
+});
+
+// â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+// PROGRESS BAR + NAV SCROLL
+// â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+const $progressBar = document.getElementById('progress-bar');
+const $navEl = document.getElementById('nav');
+function onScroll() {
+  const totalH = document.getElementById('sr').offsetHeight - innerHeight;
+  const pct = totalH > 0 ? Math.min((window.scrollY / totalH) * 100, 100) : 0;
+  if ($progressBar) $progressBar.style.width = pct + '%';
+  if ($navEl) $navEl.classList.toggle('scrolled', window.scrollY > 60);
+}
+window.addEventListener('scroll', onScroll, {passive: true});
+
+// â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+// STAT COUNTER
+// â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+const STAT_TARGETS = {n1:120, n2:50, n3:4, n4:12};
+let _statsAnimated = false;
+function animateStats() {
+  if (_statsAnimated) return;
+  _statsAnimated = true;
+  Object.entries(STAT_TARGETS).forEach(([k,target]) => {
+    const el = document.getElementById('stat-'+k);
+    if (!el) return;
+    let cur = 0; const step = target / 55;
+    const iv = setInterval(() => { cur = Math.min(cur+step, target); el.textContent=Math.floor(cur); if(cur>=target)clearInterval(iv); }, 16);
+  });
+}
+
+
+
+// â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+// COOKIE CONSENT (UK GDPR / PECR)
+// â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+const $cookie = document.getElementById('cookie');
+function dismissCookie() { $cookie.style.display = 'none'; localStorage.setItem('tdr_consent', '1'); }
+if (!localStorage.getItem('tdr_consent')) {
+  setTimeout(() => $cookie.classList.add('show'), 1800);
+}
+document.getElementById('ck-accept').onclick = dismissCookie;
+document.getElementById('ck-decline').onclick = dismissCookie;
+
+// â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+// PRIVACY MODAL
+// â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+const $privacy = document.getElementById('privacy');
+function openPrivacy(e) { e && e.preventDefault(); $privacy.classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closePrivacy() { $privacy.classList.remove('open'); document.body.style.overflow = ''; }
+document.getElementById('prv-link').onclick = openPrivacy;
+document.getElementById('ck-prv-link').onclick = openPrivacy;
+document.getElementById('prv-close').onclick = closePrivacy;
+
+// â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+// CONTACT FORM
+// â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  let valid = true;
+  ['cf-name','cf-email','cf-service','cf-msg'].forEach(id => {
+    const el = document.getElementById(id);
+    el.classList.remove('err');
+    if (!el.value.trim()) { el.classList.add('err'); valid = false; }
+  });
+  const emailEl = document.getElementById('cf-email');
+  if (emailEl.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)) {
+    emailEl.classList.add('err'); valid = false;
+  }
+  if (!valid) return;
+
+  // Open mailto as fallback (works without a backend)
+  const name = document.getElementById('cf-name').value;
+  const email = document.getElementById('cf-email').value;
+  const service = document.getElementById('cf-service').value;
+  const msg = document.getElementById('cf-msg').value;
+  const body = `Name: ${name}\nEmail: ${email}\nService: ${service}\n\n${msg}`;
+  window.location.href = `mailto:Connect@thedarkroomstudios.com?subject=Enquiry from ${encodeURIComponent(name)}&body=${encodeURIComponent(body)}`;
+
+  document.querySelector('.cf').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+});
+
+// â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+// CURSOR
+// â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+const $cd = document.getElementById('cd'), $cr = document.getElementById('cr');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  $cd.style.left = mx + 'px'; $cd.style.top = my + 'px';
+});
+(function cAnim() { rx += (mx - rx) * .1; ry += (my - ry) * .1; $cr.style.left = rx + 'px'; $cr.style.top = ry + 'px'; requestAnimationFrame(cAnim); })();
+function cursorHover() { $cr.style.width = '50px'; $cr.style.height = '50px'; $cr.style.borderColor = 'rgba(201,169,110,.85)'; }
+function cursorNormal() { $cr.style.width = '28px'; $cr.style.height = '28px'; $cr.style.borderColor = 'rgba(201,169,110,.5)'; }
+document.querySelectorAll('a,button').forEach(el => {
+  el.addEventListener('mouseenter', cursorHover);
+  el.addEventListener('mouseleave', cursorNormal);
+});
+
+// â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+// THREE.JS â€” skip if reduced motion
+// â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (!prefersReducedMotion) {
+const canvas = document.getElementById('c');
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(62, innerWidth / innerHeight, .01, 500);
+camera.position.set(0, 0, 8);
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+renderer.setSize(innerWidth, innerHeight);
+renderer.setClearColor(0x030208);
+renderer.shadowMap.enabled = true;
+window.addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+
+const lerp = (a, b, t) => a + (b - a) * t;
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const ss = (mn, mx, v) => { const t = clamp((v - mn) / (mx - mn), 0, 1); return t * t * (3 - 2 * t); };
+
+scene.add(new THREE.AmbientLight(0x1a1030, 3));
+const pl1 = new THREE.PointLight(0xc9a96e, 4, 25);
+pl1.position.set(0, 0, 4); scene.add(pl1);
+const pl2 = new THREE.PointLight(0x5060ff, 2, 30);
+pl2.position.set(8, 3, -5); scene.add(pl2);
+const pl3 = new THREE.PointLight(0xff4090, 1.5, 20);
+pl3.position.set(-8, 2, -8); scene.add(pl3);
+
+// Star field
+(()=>{
+  const N = 2500, pos = new Float32Array(N * 3), col = new Float32Array(N * 3);
+  for (let i = 0; i < N; i++) {
+    const r = 40 + Math.random() * 80;
+    const th = Math.random() * Math.PI * 2, ph = Math.acos(2 * Math.random() - 1);
+    pos[i*3] = r*Math.sin(ph)*Math.cos(th); pos[i*3+1] = r*Math.sin(ph)*Math.sin(th); pos[i*3+2] = r*Math.cos(ph);
+    const g = Math.random() > .65;
+    if (g) { col[i*3]=.79; col[i*3+1]=.67; col[i*3+2]=.43; }
+    else { const b = .3+Math.random()*.6; col[i*3]=b; col[i*3+1]=b; col[i*3+2]=b*1.08; }
+  }
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
+  scene.add(new THREE.Points(geo, new THREE.PointsMaterial({ size:.055, vertexColors:true, transparent:true, opacity:.85, sizeAttenuation:true })));
+})();
+
+// Bokeh particles
+const BN = 250, bpos = new Float32Array(BN*3), bcol = new Float32Array(BN*3), bvel = new Float32Array(BN*3);
+for (let i = 0; i < BN; i++) {
+  bpos[i*3]=(Math.random()-.5)*28; bpos[i*3+1]=(Math.random()-.5)*20; bpos[i*3+2]=(Math.random()-.5)*20;
+  bvel[i*3]=(Math.random()-.5)*.004; bvel[i*3+1]=Math.random()*.006+.002; bvel[i*3+2]=(Math.random()-.5)*.003;
+  const g = Math.random() > .5;
+  if (g) { bcol[i*3]=.8; bcol[i*3+1]=.68; bcol[i*3+2]=.44; }
+  else { bcol[i*3]=.55; bcol[i*3+1]=.7; bcol[i*3+2]=1; }
+}
+const bGeo = new THREE.BufferGeometry();
+bGeo.setAttribute('position', new THREE.BufferAttribute(bpos, 3));
+bGeo.setAttribute('color', new THREE.BufferAttribute(bcol, 3));
+const bPts = new THREE.Points(bGeo, new THREE.PointsMaterial({ size:.08, vertexColors:true, transparent:true, opacity:.55, sizeAttenuation:true }));
+scene.add(bPts);
+
+// Aperture
+const AG = new THREE.Group();
+[[1.5,.013,.75],[1.05,.01,.55],[.65,.008,.4]].forEach(([r,t,o])=>{
+  AG.add(new THREE.Mesh(new THREE.TorusGeometry(r,t,10,80), new THREE.MeshBasicMaterial({color:0xc9a96e,transparent:true,opacity:o})));
+});
+for (let i = 0; i < 6; i++) {
+  const shape = new THREE.Shape();
+  shape.moveTo(0,.08); shape.lineTo(.06,.5); shape.lineTo(0,.92); shape.lineTo(-.06,.5); shape.closePath();
+  const mat = new THREE.MeshBasicMaterial({color:0xc9a96e,transparent:true,opacity:.14,side:THREE.DoubleSide});
+  const blade = new THREE.Mesh(new THREE.ShapeGeometry(shape), mat);
+  const angle = (i/6)*Math.PI*2;
+  blade.rotation.z = angle;
+  blade.position.set(Math.cos(angle)*.5, Math.sin(angle)*.5, .001);
+  AG.add(blade);
+}
+const cOrb = new THREE.Mesh(new THREE.SphereGeometry(.1,16,16), new THREE.MeshBasicMaterial({color:0xfff6d8,transparent:true,opacity:.95}));
+AG.add(cOrb);
+const cGlow = new THREE.Mesh(new THREE.SphereGeometry(.22,16,16), new THREE.MeshBasicMaterial({color:0xffd070,transparent:true,opacity:.2}));
+AG.add(cGlow);
+for (let i = 0; i < 16; i++) {
+  const angle = (i/16)*Math.PI*2, pts = [];
+  for (let j = 0; j <= 28; j++) { const t=j/28, w=(Math.random()-.5)*.06*t; pts.push(new THREE.Vector3(Math.cos(angle)*t*3.8+w, Math.sin(angle)*t*3.8+w, .001)); }
+  AG.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({color:0xc9a96e,transparent:true,opacity:.1})));
+}
+[[-3,0],[3,0],[0,-3],[0,3]].forEach(([x,y])=>{
+  AG.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,0),new THREE.Vector3(x*.7,y*.7,0)]), new THREE.LineBasicMaterial({color:0xc9a96e,transparent:true,opacity:.07})));
+});
+const hN=200, hpos=new Float32Array(hN*3), hcol=new Float32Array(hN*3);
+for (let i=0;i<hN;i++) {
+  const a=Math.random()*Math.PI*2, r=1.2+Math.random()*2.5;
+  hpos[i*3]=Math.cos(a)*r+((Math.random()-.5)*.4); hpos[i*3+1]=Math.sin(a)*r+((Math.random()-.5)*.4); hpos[i*3+2]=(Math.random()-.5)*.1;
+  const g=Math.random()>.4;
+  if(g){hcol[i*3]=.82;hcol[i*3+1]=.7;hcol[i*3+2]=.45;}else{hcol[i*3]=1;hcol[i*3+1]=.95;hcol[i*3+2]=.8;}
+}
+const hGeo=new THREE.BufferGeometry(); hGeo.setAttribute('position',new THREE.BufferAttribute(hpos,3)); hGeo.setAttribute('color',new THREE.BufferAttribute(hcol,3));
+AG.add(new THREE.Points(hGeo, new THREE.PointsMaterial({size:.06,vertexColors:true,transparent:true,opacity:.7,sizeAttenuation:true})));
+scene.add(AG);
+
+// Work cards
+const ciNav = document.getElementById('ci-nav');
+ALBUMS.forEach((_,i)=>{ const d=document.createElement('div'); d.className='ci-dot'; d.id='cin-'+i; ciNav.appendChild(d); });
+
+const CG = new THREE.Group();
+const CW = 2.0, CH = 2.9;
+const texLoader = new THREE.TextureLoader();
+
+let cardTexturesLoaded = false;
+function loadCardTextures() {
+  if (cardTexturesLoaded) return;
+  cardTexturesLoaded = true;
+  cardMeshes.forEach((g,i) => {
+    const mat = g.children[0].material;
+    texLoader.load(ALBUMS[i].cover, tex => {
+      tex.encoding=THREE.sRGBEncoding;
+      mat.map=tex;
+      mat.color.setHex(0xffffff); // Reset color to show full texture colors
+      mat.needsUpdate=true;
+    }, undefined, ()=>{});
+  });
+}
+
+const cardMeshes = ALBUMS.map((alb,i) => {
+  const g = new THREE.Group();
+  const bgMat = new THREE.MeshStandardMaterial({color:alb.c0,metalness:.1,roughness:.9});
+  g.add(new THREE.Mesh(new THREE.PlaneGeometry(CW,CH), bgMat));
+  const ov = new THREE.Mesh(new THREE.PlaneGeometry(CW,CH), new THREE.MeshBasicMaterial({color:0x000000,transparent:true,opacity:.35}));
+  ov.position.z=.001; g.add(ov);
+  const top = new THREE.Mesh(new THREE.PlaneGeometry(CW,.22), new THREE.MeshBasicMaterial({color:alb.acc,transparent:true,opacity:.22}));
+  top.position.set(0,CH/2-.11,.002); g.add(top);
+  g.add(new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.PlaneGeometry(CW+.04,CH+.04)), new THREE.LineBasicMaterial({color:alb.acc,transparent:true,opacity:.4})));
+  g.add(new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.PlaneGeometry(CW-.08,CH-.08)), new THREE.LineBasicMaterial({color:alb.acc,transparent:true,opacity:.14})));
+  const cl = new THREE.PointLight(alb.acc,.7,4); cl.position.set(0,0,.5); g.add(cl);
+  const fanX=(i-1.5)*3.6, fanZ=-Math.pow(Math.abs(i-1.5),1.1)*1.4, fanRY=(1.5-i)*.22;
+  g.position.set(fanX,0,fanZ); g.rotation.y=fanRY;
+  g.userData={bx:fanX,bz:fanZ,bry:fanRY,idx:i};
+  CG.add(g); return g;
+});
+CG.position.set(0,0,-14);
+scene.add(CG);
+
+// Studio geometry
+const SG = new THREE.Group();
+[[2.5,.01,.1],[1.7,.01,.08],[1.1,.01,.06]].forEach(([r,t,o],i)=>{
+  const m=new THREE.Mesh(new THREE.TorusGeometry(r,t,8,80),new THREE.MeshBasicMaterial({color:0x4060ff,transparent:true,opacity:o}));
+  m.rotation.x=i*.4+.3; SG.add(m);
+});
+for(let i=0;i<12;i++){const a=(i/12)*Math.PI*2;SG.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,0),new THREE.Vector3(Math.cos(a)*3.5,Math.sin(a)*3.5,0)]),new THREE.LineBasicMaterial({color:0x4060ff,transparent:true,opacity:.05})));}
+[[-4,0],[4,0],[0,-4],[0,4]].forEach(([x,y])=>{SG.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-x*.1,-y*.1,0),new THREE.Vector3(x,y,0)]),new THREE.LineBasicMaterial({color:0x4060ff,transparent:true,opacity:.08})));});
+SG.add(new THREE.Mesh(new THREE.SphereGeometry(.06,12,12),new THREE.MeshBasicMaterial({color:0x8090ff,transparent:true,opacity:.8})));
+SG.position.set(0,0,-22);
+scene.add(SG);
+
+// Scroll + animation
+let smScroll=0, mouseX=0, mouseY=0, paused=false;
+document.addEventListener('mousemove', e=>{ mouseX=(e.clientX/innerWidth-.5)*2; mouseY=(e.clientY/innerHeight-.5)*2; });
+
+// Pause when tab is hidden (saves CPU/battery)
+document.addEventListener('visibilitychange', ()=>{ paused=document.hidden; });
+
+const camPos=new THREE.Vector3(0,0,8), camLook=new THREE.Vector3(0,0,0);
+const tPos=new THREE.Vector3(), tLook=new THREE.Vector3();
+const $oh=document.getElementById('oh'), $sh=document.getElementById('sh'), $sb=document.getElementById('sb');
+const $stWork=document.getElementById('st-work'), $stAbout=document.getElementById('st-about');
+const $stStats=document.getElementById('st-stats'), $stProcess=document.getElementById('st-process');
+const $ci=document.getElementById('ci'), $oc=document.getElementById('oc'), $ft=document.getElementById('ft');
+const $riDots=document.querySelectorAll('.ri-d');
+const $ciCat=document.getElementById('ci-cat'), $ciTtl=document.getElementById('ci-ttl'), $ciYr=document.getElementById('ci-yr');
+const $viewBtn=document.getElementById('view-btn');
+function setOp(el,v){if(el)el.style.opacity=v}
+function tog(el,on){if(el){on?el.classList.add('on'):el.classList.remove('on')}}
+let lastActiveCard=-1;
+const clock=new THREE.Clock(); let t=0;
+
+function updateScene(p) {
+  AG.rotation.z=t*.11; AG.rotation.x=Math.sin(t*.18)*.04;
+  cGlow.material.opacity=.15+Math.sin(t*1.8)*.08; cOrb.material.opacity=.9+Math.sin(t*2.2)*.08;
+  const aScale=clamp(1-ss(.06,.2,p),0,1);
+  AG.scale.setScalar(lerp(AG.scale.x,aScale,.06)); AG.position.z=lerp(0,-8,ss(.06,.22,p));
+
+  if(p<.88){
+    const ba=bGeo.attributes.position.array;
+    for(let i=0;i<BN;i++){ba[i*3]+=bvel[i*3];ba[i*3+1]+=bvel[i*3+1];ba[i*3+2]+=bvel[i*3+2];if(ba[i*3+1]>11)ba[i*3+1]=-11;if(Math.abs(ba[i*3])>16)ba[i*3]*=-1;}
+    bGeo.attributes.position.needsUpdate=true; bPts.rotation.y=t*.008;
+  }
+
+  // Scroll zones for 900vh:
+  // 0.00-0.10 Hero | 0.10-0.18 Transition
+  // 0.18-0.65 Work cards | 0.65-0.72 Stats
+  // 0.72-0.82 About/Studio | 0.82-0.90 Process
+  // 0.90-1.00 Contact
+  const heroEnd=.10,workStart=.18,workEnd=.65;
+  const statsStart=.67,statsEnd=.78;
+  const aboutStart=.72,aboutEnd=.84;
+  const processStart=.84,processEnd=.93;
+  const contactStart=.92;
+
+  if(p<heroEnd){tPos.set(mouseX*.3,mouseY*-.2,8);tLook.set(0,0,0);}
+  else if(p<workStart){const tp=ss(heroEnd,workStart,p);tPos.set(lerp(0,-1.2,tp),lerp(0,.4,tp),lerp(8,10,tp));tLook.set(0,0,0);}
+  else if(p<workEnd){const cp=ss(workStart,workEnd,p),sx=lerp(-7.5,7.5,cp);tPos.set(sx*.42+mouseX*.2,.2+mouseY*-.1,5);tLook.set(sx*.75,0,-14);}
+  else if(p<statsStart){const tp=ss(workEnd,statsStart,p);tPos.set(lerp(3.5,0,tp),lerp(.2,.5,tp),lerp(5,7,tp));tLook.set(lerp(5,0,tp),0,lerp(-14,-22,tp));}
+  else if(p<aboutEnd){tPos.set(mouseX*.18,.5+mouseY*-.1,7);tLook.set(0,0,-22);}
+  else if(p<processStart){const tp=ss(aboutEnd,processStart,p);tPos.set(lerp(0,-1,tp),lerp(.5,.2,tp),lerp(7,6,tp));tLook.set(0,0,lerp(-22,-38,tp));}
+  else if(p<contactStart){const tp=ss(processStart,contactStart,p);tPos.set(lerp(-1,-1,tp),lerp(.2,0,tp),lerp(6,7,tp));tLook.set(0,0,lerp(-38,0,tp));}
+  else{tPos.set(-1+mouseX*.15,mouseY*-.1,7);tLook.set(0,0,0);}
+  camPos.lerp(tPos,.055); camLook.lerp(tLook,.055);
+  camera.position.copy(camPos); camera.lookAt(camLook);
+
+  CG.visible=p>workStart*.9&&p<workEnd+.04;
+  if(CG.visible){ loadCardTextures();
+    const cp=clamp((p-workStart)/(workEnd-workStart),0,1), activeF=cp*3, activeIdx=Math.round(clamp(activeF,0,3));
+    cardMeshes.forEach((m,i)=>{const dist=Math.abs(i-activeF),sc=lerp(.8,1.08,1-clamp(dist,0,1));m.scale.lerp(new THREE.Vector3(sc,sc,sc),.07);m.position.y=Math.sin(t*.7+i*1.3)*.07;m.rotation.y=lerp(m.rotation.y,m.userData.bry+mouseX*.05,.07);});
+    const ci=clamp(Math.round(activeF),0,3);
+    if(ci!==lastActiveCard){lastActiveCard=ci;const d=ALBUMS[ci];$ciCat.textContent=d.cat;$ciTtl.textContent=d.title;$ciYr.textContent=d.tags.join(' Â· ');document.querySelectorAll('.ci-dot').forEach((d2,i2)=>tog(d2,i2===ci));viewBtnAlbum=ci;}
+    $riDots.forEach((d2,i)=>tog(d2,i===activeIdx+1));
+  }
+
+  SG.rotation.z=t*.04; SG.rotation.y=t*.02;
+  SG.children.forEach((c,i)=>{if(c.geometry&&c.geometry.type==='TorusGeometry'){c.rotation.x=t*(.02+i*.015)+i*.4+.3;}});
+  pl1.intensity=3+Math.sin(t*1.6)*.9;
+
+  // UI opacity drives
+  const heroA=1-ss(.06,.16,p); setOp($oh,heroA); tog($oh,heroA>.01);
+  setOp($sh,p<.05?(p/.05).toString():(1-ss(.06,.13,p)).toString()); tog($sh,p<.13);
+  tog($sb,p>.16&&p<.91);
+  const wa=ss(.18,.27,p)*(1-ss(.48,.56,p)); setOp($stWork,wa);
+  const cia=ss(.22,.32,p)*(1-ss(.62,.70,p)); setOp($ci,cia);
+  tog($viewBtn,CG.visible&&cia>.2);
+  const sa=ss(.67,.76,p)*(1-ss(.80,.87,p)); setOp($stStats,sa);
+  if(sa>.1) animateStats();
+  const aa=ss(.72,.80,p)*(1-ss(.84,.91,p)); setOp($stAbout,aa);
+  const pa=ss(.84,.91,p)*(1-ss(.94,.98,p)); setOp($stProcess,pa);
+  const ca=ss(.92,.97,p); setOp($oc,ca); tog($oc,ca>.01); setOp($ft,ca); tog($ft,ca>.01);
+  if(p<.16){$riDots.forEach((d,i)=>tog(d,i===0));}
+  else if(p>.90){$riDots.forEach((d,i)=>tog(d,i===6));}
+}
+
+function animate(){
+  requestAnimationFrame(animate);
+  if(paused)return;
+  t=clock.getElapsedTime();
+  smScroll+=((window.scrollY||window.pageYOffset)-smScroll)*.07;
+  const totalH=document.getElementById('sr').offsetHeight-innerHeight;
+  updateScene(clamp(smScroll/totalH,0,1));
+  renderer.render(scene,camera);
+}
+animate();
+
+document.getElementById('n-work').onclick=e=>{e.preventDefault();window.scrollTo({top:document.getElementById('sr').offsetHeight*.20,behavior:'smooth'});};
+document.getElementById('n-about').onclick=e=>{e.preventDefault();window.scrollTo({top:document.getElementById('sr').offsetHeight*.74,behavior:'smooth'});};
+document.getElementById('n-contact').onclick=e=>{e.preventDefault();window.scrollTo({top:document.getElementById('sr').offsetHeight*.93,behavior:'smooth'});};
+document.querySelectorAll('.sb-a[data-album]').forEach(el=>{
+  el.addEventListener('click',e=>{e.preventDefault();const i=parseInt(el.dataset.album);const totalH=document.getElementById('sr').offsetHeight-innerHeight;window.scrollTo({top:totalH*(0.18+(i/3)*0.47),behavior:'smooth'});});
+});
+document.getElementById('sb-all').addEventListener('click',e=>{e.preventDefault();window.scrollTo({top:document.getElementById('sr').offsetHeight*.20,behavior:'smooth'});});
+// ci-dot click
+document.querySelectorAll('.ci-dot').forEach((el,i)=>{
+  el.addEventListener('click',()=>{const totalH=document.getElementById('sr').offsetHeight-innerHeight;window.scrollTo({top:totalH*(0.18+(i/3)*0.47),behavior:'smooth'});});
+});
+
+setTimeout(()=>{$oh.style.opacity='1';tog($oh,true);},200);
+setTimeout(()=>{tog($sh,true);},1400);
+
+} // end if(!prefersReducedMotion)
+
+// â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+// LIGHTBOX
+// â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+const $lb=document.getElementById('lb'), $lbGrid=document.getElementById('lb-grid');
+const $lbTitle=document.getElementById('lb-title'), $lbCat=document.getElementById('lb-cat');
+const $lbSingle=document.getElementById('lb-single'), $lbImg=document.getElementById('lb-img'), $lbCount=document.getElementById('lb-count');
+let lbPhotos=[], lbIdx=0, viewBtnAlbum=0;
+
+function openLightbox(albumIdx){
+  const alb=ALBUMS[albumIdx];
+  lbPhotos=alb.photos; $lbTitle.textContent=alb.title; $lbCat.textContent=alb.cat;
+  $lbGrid.innerHTML='';
+  lbPhotos.forEach((ph,i)=>{
+    const img=document.createElement('img');
+    img.loading='lazy';
+    // ph is {t:thumb, f:full} or a plain string (fallback)
+    img.src = typeof ph === 'object' ? ph.t : ph;
+    img.alt=alb.title+' photo '+(i+1);
+    img.addEventListener('click',()=>openSingle(i));
+    img.addEventListener('mouseenter',cursorHover); img.addEventListener('mouseleave',cursorNormal);
+    $lbGrid.appendChild(img);
+  });
+  $lb.classList.add('open'); $lbSingle.style.display='none'; document.body.style.overflow='hidden';
+  $lb.scrollTop=0;
+}
+function closeLightbox(){ $lb.classList.remove('open'); $lbSingle.style.display='none'; document.body.style.overflow=''; }
+function openSingle(idx){
+  lbIdx=clamp(idx,0,lbPhotos.length-1);
+  const ph=lbPhotos[lbIdx];
+  $lbImg.src = typeof ph === 'object' ? ph.f : ph;
+  $lbImg.alt='Photo '+(lbIdx+1);
+  $lbCount.textContent=(lbIdx+1)+' / '+lbPhotos.length;
+  $lbSingle.style.display='flex';
+}
+function prevSingle(){ openSingle(lbIdx===0?lbPhotos.length-1:lbIdx-1); }
+function nextSingle(){ openSingle(lbIdx+1>=lbPhotos.length?0:lbIdx+1); }
+
+// Helper so lightbox can reference clamp even when Three.js block is skipped
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+
+document.getElementById('lb-close').onclick=closeLightbox;
+document.getElementById('lb-single-close').onclick=()=>{$lbSingle.style.display='none';};
+document.getElementById('lb-prev').onclick=prevSingle;
+document.getElementById('lb-next').onclick=nextSingle;
+document.getElementById('view-btn').addEventListener('click',()=>openLightbox(viewBtnAlbum));
+
+// Touch swipe support in lightbox single view
+let swipeStartX=0;
+$lbSingle.addEventListener('touchstart',e=>{swipeStartX=e.touches[0].clientX;},{passive:true});
+$lbSingle.addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].clientX-swipeStartX;
+  if(Math.abs(dx)>50){dx<0?nextSingle():prevSingle();}
+});
+
+document.addEventListener('keydown',e=>{
+  if($privacy.classList.contains('open')){if(e.key==='Escape')closePrivacy();return;}
+  if(!$lb.classList.contains('open'))return;
+  if(e.key==='Escape'){if($lbSingle.style.display!=='none')$lbSingle.style.display='none';else closeLightbox();}
+  if($lbSingle.style.display!=='none'){if(e.key==='ArrowLeft')prevSingle();if(e.key==='ArrowRight')nextSingle();}
+});
+</script>
+</body>
 </html>
+
