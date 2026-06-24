@@ -1,0 +1,6 @@
+images/**/*.jpg
+images/**/*.JPG
+images/**/*.jpeg
+*.zip
+*.rar
+*.7z
