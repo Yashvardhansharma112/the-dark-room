@@ -3,6 +3,11 @@
 *.rar
 *.7z
 
+# Raw high-res originals — WebP versions in images/*/webp/ are used instead
+images/**/*.jpg
+images/**/*.JPG
+images/**/*.jpeg
+
 # OS files
 .DS_Store
 Thumbs.db
