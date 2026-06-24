@@ -1,7 +1,8 @@
 {
 	"name": "the-dark-room",
 	"compatibility_date": "2026-06-24",
+	"workers_dev": true,
 	"assets": {
 		"directory": "./"
-	},
+	}
 }

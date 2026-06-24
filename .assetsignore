@@ -4,3 +4,9 @@ images/**/*.jpeg
 *.zip
 *.rar
 *.7z
+.git
+.git/**
+.wrangler
+.wrangler/**
+node_modules
+node_modules/**
