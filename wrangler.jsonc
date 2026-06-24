@@ -4,10 +4,4 @@
 	"assets": {
 		"directory": "./"
 	},
-	"routes": [
-		{
-			"pattern": "the-dark-room.studio",
-			"custom_domain": true
-		}
-	]
 }
